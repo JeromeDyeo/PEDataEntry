@@ -1,4 +1,4 @@
-package com.PEDataEntry.demo;
+package com.PEDataEntry;
 
 import java.util.TimeZone;
 
@@ -12,7 +12,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EnableJpaRepositories
-public class DemoApplication extends SpringBootServletInitializer {
+public class PEFinancialTrackerApplication extends SpringBootServletInitializer {
 	@PostConstruct
 	public void startup() {
 		TimeZone.setDefault(TimeZone.getTimeZone("Singapore"));
@@ -20,10 +20,10 @@ public class DemoApplication extends SpringBootServletInitializer {
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(DemoApplication.class);
+		return application.sources(PEFinancialTrackerApplication.class);
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+		SpringApplication.run(PEFinancialTrackerApplication.class, args);
 	}
 }
