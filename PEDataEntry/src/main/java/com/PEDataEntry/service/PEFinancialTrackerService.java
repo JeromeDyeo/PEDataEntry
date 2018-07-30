@@ -19,7 +19,12 @@ public class PEFinancialTrackerService {
 		ArrayList<DataRow> all = (ArrayList<DataRow>) PEFTRepo.findAll();
 		return all;
 	}
-
+	
+	public DataRow create(DataRow dataRow) {
+		DataRow created = PEFTRepo.save(dataRow);
+		return created;
+	}
+	
 	public boolean delete(int dataRow) {
 		try {
 			PEFTRepo.deleteById(dataRow);

@@ -30,6 +30,7 @@ public class PEFinancialTrackerController {
 	@RequestMapping (value = {"/create"}, method = RequestMethod.POST)
 	public ModelAndView createDataRow(@ModelAttribute("dataRow") DataRow dataRow) {
 		ModelAndView mv = new ModelAndView("redirect:getAll");
+		DataRow created = PEFTService.create(dataRow);
 		return mv;
 	}
 	
