@@ -23,13 +23,13 @@
 		<div class="row">
 			<div class="col-md-6">
 				<div class="btn-toolbar">
-					<a href="create" class="btn btn-primary" role="button">Create
+					<a href="create" class="btn btn-primary">Create
 						Entry</a>
 				</div>
 			</div>
-			</div>
-			</div>
-	<div class="col-md-12">
+		</div>
+	</div>
+	<div class="col-md-12" style="overflow:auto;">
 		<div class="row">
 			<div class="table-responsive">
 				<table id="table_id" class="display">
@@ -41,8 +41,7 @@
 							<th colspan="13">Revenue</th>
 							<th colspan="4">Subscription</th>
 							<th colspan="4">Paid vs Trial Merchant</th>
-							<th>Delete</th>
-							<th>Update</th>
+							<th colspan="2">Changes</th>
 						</tr>
 						<tr>
 							<th>Acquisition Date</th>
@@ -77,6 +76,8 @@
 							<th>Paid Trial Month</th>
 							<th>Paid Subscription</th>
 							<th>Trial Subscription</th>
+							<th>Delete</th>
+							<th>Update</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -115,7 +116,6 @@
 								<td>${data.paidTrialMonth}</td>
 								<td>${data.paidSubscription}</td>
 								<td>${data.trialSubscription}</td>
-								
 								<td>
 									<button type="button" data-id="${data.id}"
 										class="open-deleteProductModal btn btn-danger"
@@ -136,9 +136,39 @@
 	</div>
 </body>
 
+<!-- DELETE Campaign -->
+<div class="modal fade" id="deleteProductModal" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header text-center">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<div class="modal-body text-center">
+				<h5>Are you sure you want to delete?</h5>
+				<br />
+				<form action="delete" method="post">
+					<input type="hidden" name="dataRow" id="dataRow" /> <input
+						type="submit" class="btn btn-default" value="Yes"> <input
+						type="button" class="btn btn-default" data-dismiss="modal"
+						value="No"></input>
+				</form>
+
+			</div>
+		</div>
+	</div>
+</div>
+<!-- END DELETE PRODUCT MODAL -->
 <script>
-		$(document).ready(function() {
-			$('#table_id').DataTable();
-		});
-	</script>
+	$(document).on("click", ".open-deleteProductModal", function() {
+		var productId = $(this).data('id');
+		$(".modal-body #dataRow").val(productId);
+	});
+
+	$(document).ready(function() {
+		$('#table_id').DataTable();
+	});
+</script>
+	<script src="/js/bootstrap.min.js"></script>
+	<script src="/js/jquery.cookie.js"></script>
+	<script src="/js/front.js"></script>
 </html>
